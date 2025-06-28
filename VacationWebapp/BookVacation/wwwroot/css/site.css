@@ -1,0 +1,122 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/*  Here added container template*/
+.row {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+
+@media screen and (max-width: 736px) {
+
+    .row {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap:2em;
+    }
+
+}
+
+/*.row {
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    justify-content: space-around;*/
+   /* gap: 2em;*/
+/*}*/
+
+.row1 {
+    display: flex;
+    justify-content:flex-start;
+    gap: 2em;
+}
+
+.row3 {
+    text-align:center;
+    display: flex;
+    flex-wrap:wrap;
+    
+    
+}
+
+.col-4 {
+    border: 1px solid #ccc;
+    padding: 3px;
+    border-radius: 7px;
+    justify-content: space-around;
+}
+.col-41 {
+    padding: 3px;
+    border-radius: 7px;
+    justify-content: space-around;
+}
+
+.box img {
+    width: 18rem;
+}
+
+
+/*.navbar a:after {
+    position: absolute;
+    left: 0;
+    top: 52px;
+    width: 100%;
+    height: 2px;
+    background: #dfa974;
+    content: "";
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}*/
+
+/*.navbar a:hover {
+    text-decoration: underline;
+}
+*/
+.navbar a {
+    margin-bottom: 2px;
+    text-underline-offset: 7px;
+}
+
+
+.classBtns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.col-md-8{
+    width:60%;
+}
+.offset-lg-2 {
+    margin-left: 7%;
+}

@@ -1,0 +1,96 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+@using VacationApp.ViewModels.Vacation
+
+@model List<AllHotelsIndexViewModel>
+
+<div class="text-center">
+	<h1 class="display-4">Holidays</h1>
+	<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<hr />
+	<div class="container">
+
+		<div class="row">
+			@foreach (var hotel in Model)
+			{
+				<div class="col-4 col-12-medium">
+
+					<!-- Box -->
+					<section class="box feature">
+						<a href="#" class="image featured">
+							<img src=@hotel.ImageUrl alt="" />
+						</a>
+						<div class="inner">
+							<h2>
+
+								<p>@hotel.HotelName</p>
+							</h2>
+							<p>@hotel.HotelInfo</p>
+
+							<div class="classBtns">
+
+								<a asp-controller="Vacation" asp-action="Details" asp-route-id="@hotel.IdHotel" class="btn btn-info w-25">
+									<i class="fas fa-info-circle"></i> Details
+								</a>
+								<a asp-controller="Vacation" asp-action="Add" asp-route-id="@hotel.IdHotel" class="btn btn-info w-70">
+									<i class="fas fa-info-circle"></i> Make reservation
+								</a>
+@* 
+								@using (Html.BeginForm("Remove", "Vacation", FormMethod.Post, new { @class = "form-horizontal" }))
+								{
+									<input type="hidden" id="numh1" name="numremove" asp-for="@hotel.IdHotel" />
+									<button type="submit" id="removebtn">Remove hotel</button>
+								}
+								@using (Html.BeginForm("Details", "Vacation", FormMethod.Post))
+								{
+									<input type="hidden" id="numh2" name="number" asp-for="@hotel.IdHotel" />
+									<button type="submit" id="details">Details</button>
+								}
+								@using (Html.BeginForm("Edit", "Vacation", FormMethod.Post))
+								{
+									<input type="hidden" id="numh3" name="number" asp-for="@hotel.IdHotel" />
+									<button type="submit" id="editbtn">Edit</button>
+								} *@
+							</div>
+
+						</div>
+					</section>
+
+				</div>
+			}
+
+			@* <div class="col-4 col-12-medium">
+
+				<!-- Box -->
+				<section class="box feature">
+					<a href="#" class="image featured"><img src="https://content.tui.co.uk/adamtui/2019_12/17_11/61d6945a-4392-4994-9d5c-ab2600be5197/LOC_000450_TUR_GUM_09_GUMBET_BEACHWebOriginalCompressed.jpg?i10c=img.resize(width:1080);img.crop(width:1080%2Cheight:608)" alt="" /></a>
+					<div class="inner">
+						<header>
+							<h2>An interesting title</h2>
+							<p>This is also an interesting subtitle</p>
+						</header>
+						<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+					</div>
+				</section>
+
+			</div>
+			<div class="col-4 col-12-medium">
+
+				<!-- Box -->
+				<section class="box feature">
+					<a href="#" class="image featured"><img src="https://content.tui.co.uk/adamtui/2023_8/11_9/aacea1c8-bf73-4207-8f31-b05b00a3c879/ACC_040057_TUR_08WebOriginalCompressed.jpg?i10c=img.resize(width:488);img.crop(width:488%2Cheight:274)" alt="" /></a>
+					<div class="inner">
+						<header>
+							<h2>Oh, and finally ...</h2>
+							<p>Here's another intriguing subtitle</p>
+						</header>
+						<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+					</div>
+				</section>
+
+			</div> *@
+		</div>
+	</div>
+</div>
