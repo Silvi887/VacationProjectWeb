@@ -65,9 +65,7 @@ namespace VacationApp.Services.Core
                         Address = reservationmodel.GuestAddress,
                         Email = reservationmodel.GuestEmail,
                         NumberOfPhone = reservationmodel.GuestPhoneNumber
-                        //  Room { get; set; } = null!;
-                        // HotelId { get; set; }
-                        //HotelId = idhotel
+                      
                     };
 
                     //Guest guest = new Guest()
