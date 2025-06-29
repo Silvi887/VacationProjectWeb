@@ -21,13 +21,15 @@
             <div class="row1">
                 <div class="col-sm-6 mb-3">
                     <label class="form-label-add-edit">HotelName</label>
-                    <input  class="form-control" aria-required="true" />
+                    <input asp-for="@Model.HotelName" class="form-control" aria-required="true" />
+
+                    <input asp-for="@Model.HotelId" type="hidden"  aria-required="true" />
                     @*   <span asp-validation-for="@Model.Name" class="text-danger"></span> *@
                 </div></div>
             <div class="row1">
                
                 <div class="col-sm-6 mb-3">
-                    <input type="hidden"  name="number" asp-for="@Model.HotelId" />
+                  
                     <label asp-for="@Model.GuestFirstName" class="form-label-add-edit">FirstName</label>
                     <input asp-for="@Model.GuestFirstName" class="form-control" aria-required="true" />
                   @*   <span asp-validation-for="@Model.Name" class="text-danger"></span> *@
@@ -67,9 +69,9 @@
                 </div>
                 </div>
             <div>
-                <label class="form-label-roomtype">Type room</label>
-                <select class="form-control" aria-required="true" asp-items="@(new SelectList(Model.roodrp, "Id", "RoomType"))">
-                    <option value="@Model.RoomId">...</option>
+                <label asp-for="@Model.RoomId" class="form-label-add-edit">Type room</label>
+                <select asp-for="@Model.RoomId" class="form-control" aria-required="true" asp-items="@(new SelectList(Model.roodrp, "Id", "RoomType"))">
+                    <option value="">...</option>
                 </select>
                 <span  class="text-danger"></span>
 
@@ -94,12 +96,19 @@
                 <input asp-for="@Model.EndDate" type="date" class="form-control" value="@(string.IsNullOrEmpty(Model.EndDate) ? today : Model.EndDate)" aria-required="true" />
                 <span class="text-danger"></span>
             </div>
+
             <div class="mb-2">
                 <button class="btn btn-warning btn-dark-text w-100 py-2 fw-bold rounded" type="submit">
                     <i class="fas fa-save"></i> Save
                 </button>
             </div>
-         
+
+            @if (ViewBag.SuccessMessage != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
         </form>
     </div>
 </div>

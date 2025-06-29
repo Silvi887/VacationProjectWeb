@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vacation.GConstants;
 
 namespace VacationAdd.Data.Models
 {
@@ -30,10 +32,33 @@ namespace VacationAdd.Data.Models
 
 
         [Required]
-        public string GuestId { get; set; }
+        public string GuestId { get; set; } = null!;
 
         [ForeignKey(nameof(GuestId))]
-        public virtual Guest Guest { get; set; } = null!;
+        public virtual IdentityUser Guest { get; set; } = null!;
+
+        [Required]
+        [MaxLength(ValidationConstants.GuestMaxLenght)]
+        [MinLength(ValidationConstants.GuestMinLenght)]
+        public string FirstName { get; set; } = null!;
+
+
+        [Required]
+        [MaxLength(ValidationConstants.GuestMaxLenght)]
+        [MinLength(ValidationConstants.GuestMinLenght)]
+        public string LastName { get; set; } = null!;
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+
+
+        public string? Address { get; set; }
+
+        public string? Email { get; set; }
+
+
+        [Required]
+        public string NumberOfPhone { get; set; } = null!;
 
         [Required]
         public int RoomId { get; set; }

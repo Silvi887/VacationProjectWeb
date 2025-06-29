@@ -46,12 +46,14 @@ namespace BookVacation.Controllers
             try
             {
 
+                string[] ArrHotelName = id.Split(',');
 
                // int idhotel1 = int.Parse(id);
                 AddReservation inAddReservation = new AddReservation()
                 {
-                    HotelId= id,
-                   // HotelName=
+                    HotelId= ArrHotelName[0],
+                    HotelName = ArrHotelName[1],
+                    // HotelName=
                     StartDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
                     EndDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
                     roodrp = (IEnumerable<RoomViewModel>)await this.vacationService.RoomViewDataAsync(),
@@ -95,7 +97,11 @@ namespace BookVacation.Controllers
                     ModelState.AddModelError(string.Empty,"Fatal error accure while adding a reservation!");
                     return this.RedirectToAction(nameof(Add));
                 }
-                return View();
+
+
+                inAddReservation.roodrp = (IEnumerable<RoomViewModel>)await this.vacationService.RoomViewDataAsync();
+                ViewBag.SuccessMessage = "Successful reservation!";
+                return View("Views/Vacation/AddReservation.cshtml", inAddReservation);
 
             }
 

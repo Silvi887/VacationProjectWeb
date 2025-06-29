@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VacationAdd.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationVaacation1 : Migration
+    public partial class MigrationVacation1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,23 +48,6 @@ namespace VacationAdd.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Guests",
-                columns: table => new
-                {
-                    IdGuest = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumberOfPhone = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Guests", x => x.IdGuest);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,6 +217,12 @@ namespace VacationAdd.Data.Migrations
                     AdultsCount = table.Column<int>(type: "int", nullable: false),
                     ChildrenCount = table.Column<int>(type: "int", nullable: false),
                     GuestId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumberOfPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: false),
                     HotelId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -241,10 +230,10 @@ namespace VacationAdd.Data.Migrations
                 {
                     table.PrimaryKey("PK_Reservations", x => x.IdReservation);
                     table.ForeignKey(
-                        name: "FK_Reservations_Guests_GuestId",
+                        name: "FK_Reservations_AspNetUsers_GuestId",
                         column: x => x.GuestId,
-                        principalTable: "Guests",
-                        principalColumn: "IdGuest",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservations_Hotels_HotelId",
@@ -374,13 +363,10 @@ namespace VacationAdd.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
-                name: "Guests");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Hotels");

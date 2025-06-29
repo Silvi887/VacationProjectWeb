@@ -13,8 +13,7 @@ namespace VacationApp.ViewModels.Vacation
 
         //public int IdReservation { get; set; }
 
-        //[Required]
-        //public string HotelName { get; set; } = "";
+       
 
         [Required]
         public string StartDate { get; set; } = null!;
@@ -55,6 +54,9 @@ namespace VacationApp.ViewModels.Vacation
 
         [Required]
         public string HotelId { get; set; }
+
+        [Required]
+        public string HotelName { get; set; } = "";
 
         public IEnumerable<RoomViewModel> roodrp = null!;
 

@@ -22,7 +22,6 @@ namespace VacationAdd.Data
         public DbSet<Hotel> Hotels { get; set; } = null!;
 
         public DbSet<Room> Rooms { get; set; } = null!;
-        public DbSet<Guest> Guests { get; set; } = null!;
 
         public DbSet<Reservation> Reservations { get; set; }
 
@@ -71,7 +70,7 @@ namespace VacationAdd.Data
                 entityres.HasKey(r => r.IdReservation);
 
                 entityres.HasOne(g => g.Guest)
-                        .WithMany(g => g.Reservations)
+                        .WithMany()
                         .HasForeignKey(g => g.GuestId);
 
                 entityres.HasOne(r => r.Room)

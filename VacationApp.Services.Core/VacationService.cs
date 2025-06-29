@@ -40,8 +40,8 @@ namespace VacationApp.Services.Core
                 IdentityUser? user1 = await this.userManager.FindByIdAsync(Userid);
 
                 //string? UserId = this.GetUserId();
-
-                var Room = this.Dbcontext.Rooms.FindAsync(reservationmodel.RoomId);
+                int idroom = int.Parse(reservationmodel.RoomId);
+                var Room = this.Dbcontext.Rooms.FindAsync(idroom);
 
                 if (user1 != null)
                 {
@@ -58,25 +58,30 @@ namespace VacationApp.Services.Core
                         //Guest { get; set; } = null!;
 
                         RoomId = int.Parse(reservationmodel.RoomId),
-                        HotelId = int.Parse(reservationmodel.HotelId)
-                        //  Room { get; set; } = null!;
-
-                        // HotelId { get; set; }
-                        //HotelId = idhotel
-                    };
-
-                    Guest guest = new Guest()
-                    {
-                        IdGuest= Userid,
+                        HotelId = int.Parse(reservationmodel.HotelId),
                         FirstName = reservationmodel.GuestFirstName,
                         LastName = reservationmodel.LastNameG,
                         DateOfBirth = DateTime.ParseExact(reservationmodel.DateofBirth, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None),
                         Address = reservationmodel.GuestAddress,
                         Email = reservationmodel.GuestEmail,
                         NumberOfPhone = reservationmodel.GuestPhoneNumber
-
-
+                        //  Room { get; set; } = null!;
+                        // HotelId { get; set; }
+                        //HotelId = idhotel
                     };
+
+                    //Guest guest = new Guest()
+                    //{
+                    //    IdGuest= Userid,
+                    //    FirstName = reservationmodel.GuestFirstName,
+                    //    LastName = reservationmodel.LastNameG,
+                    //    DateOfBirth = DateTime.ParseExact(reservationmodel.DateofBirth, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    //    Address = reservationmodel.GuestAddress,
+                    //    Email = reservationmodel.GuestEmail,
+                    //    NumberOfPhone = reservationmodel.GuestPhoneNumber
+
+
+                    //};
 
                     //UserReservation reservation = new UserReservation()
                     //{
@@ -86,13 +91,13 @@ namespace VacationApp.Services.Core
 
 
                     await this.Dbcontext.Reservations.AddAsync(reservation1);
-                    await this.Dbcontext.Guests.AddAsync(guest);
+                   // await this.Dbcontext.Guests.AddAsync(guest);
 
                     await this.Dbcontext.SaveChangesAsync();
+                    operationResult = true;
 
-
-                }
-            ;
+                };
+            
 
 
 

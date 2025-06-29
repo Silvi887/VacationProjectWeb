@@ -224,40 +224,6 @@ namespace VacationAdd.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("VacationAdd.Data.Models.Guest", b =>
-                {
-                    b.Property<string>("IdGuest")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("NumberOfPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdGuest");
-
-                    b.ToTable("Guests");
-                });
-
             modelBuilder.Entity("VacationAdd.Data.Models.Hotel", b =>
                 {
                     b.Property<int>("IdHotel")
@@ -303,14 +269,28 @@ namespace VacationAdd.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdReservation"));
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("AdultsCount")
                         .HasColumnType("int");
 
                     b.Property<int>("ChildrenCount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("GuestId")
                         .IsRequired()
@@ -318,6 +298,15 @@ namespace VacationAdd.Data.Migrations
 
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NumberOfPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
@@ -451,8 +440,8 @@ namespace VacationAdd.Data.Migrations
 
             modelBuilder.Entity("VacationAdd.Data.Models.Reservation", b =>
                 {
-                    b.HasOne("VacationAdd.Data.Models.Guest", "Guest")
-                        .WithMany("Reservations")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Guest")
+                        .WithMany()
                         .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -493,11 +482,6 @@ namespace VacationAdd.Data.Migrations
                     b.Navigation("Reservation");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VacationAdd.Data.Models.Guest", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("VacationAdd.Data.Models.Hotel", b =>
